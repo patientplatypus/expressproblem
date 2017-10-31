@@ -10,12 +10,26 @@ var port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-app.post('/', function (req, res) {
+app.post('/postcode', function (req, res) {
 
+
+    console.log('*****************');
+    console.log('*****************');
+    console.log('*****************');
     console.log('inside Docker service');
+    console.log('*****************');
+    console.log('*****************');
+    console.log('*****************');
     console.log('value of req.body: ', req.body);
+    console.log('*****************');
+    console.log('*****************');
+    console.log('*****************');
+    console.log('*****************');
 
     res.setHeader('Content-Type', 'application/json');
+
+    console.log('value of req.body.code: ', req.body.code);
+    console.log('value of req.body.timeoutMs: ', req.body.timeoutMs);
 
   	if (!req.body.code || !req.body.timeoutMs) {
         res.status(400);
@@ -50,6 +64,7 @@ app.post('/', function (req, res) {
   		}, req.body.timeoutMs)
 
   		job.on('close', function (exitCode) {
+        console.log('inside job.on close');
   		   var result = _.extend(output, { isError: exitCode != 0 })
   		   res.end(JSON.stringify(result));
   		   clearTimeout(timeoutCheck);
