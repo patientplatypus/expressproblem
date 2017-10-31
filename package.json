@@ -25,6 +25,7 @@
     "async": "^2.0.0-rc.3",
     "cors": "^2.8.4",
     "dockerode": "^2.2.10",
+    "express": "^4.16.2",
     "fs-extra": "^0.26.7",
     "lodash": "^4.8.2",
     "request": "^2.70.0",

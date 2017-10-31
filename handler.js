@@ -12,6 +12,8 @@ const ERRORS = {
 module.exports = (sandbox) => (request, response) => {
 
   console.log('INSIDE HANDLER');
+  console.log('value of sandbox: ', sandbox);
+  console.log('value of request.body: ', request.body);
 
   if (!request.body.code) {
     return response
@@ -23,10 +25,15 @@ module.exports = (sandbox) => (request, response) => {
   options = {
     code: request.body.code,
     timeoutMs: 2000,
-    v3: (request.body.v3 == true || request.body.v3 == "true")
+    v3: (request.body.v3 == false || request.body.v3 == "false")
   }
 
   sandbox.run(options, function (err, result) {
+
+    console.log('inside sandbox run');
+    console.log('value of err: ', err);
+    console.log('value of result: ', result);
+
 
     if (err) {
       return response
